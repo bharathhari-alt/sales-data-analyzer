@@ -37,7 +37,7 @@ def BarChart(df):
         plt.title("Sales by Product")
         plt.xlabel("Product")
         plt.ylabel("Total Sales")
-        plt.xticks(rotation=0)
+        plt.xticks(rotation=270)
         plt.tight_layout()
         plt.show()
     else:
@@ -59,6 +59,14 @@ def sales_after_date(df, date):
     else:
         print("No data to filter.")
 
+def row_sort(df, column_name):
+    if df is not None:
+        sorted_data = df.sort_values(by=column_name)
+        print(f"\nData sorted by {column_name}:")
+        print(sorted_data)
+    else:
+        print("No data to sort.")
+
 def main():
     df = LoadData("C:\\Users\\bhara\\OneDrive\\Desktop\\Book1.csv")
     df["date"] = pd.to_datetime(df["date"]) 
@@ -67,6 +75,7 @@ def main():
     SalesByProduct(df)
     FilterData(df, "Laptop")
     sales_after_date(df, "2026-01-03")
+    row_sort(df, "amount")
     BarChart(df)
 
 if __name__ == "__main__":
